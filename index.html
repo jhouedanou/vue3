@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<!-- Ajout du CDN Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 id="title">Titre</h1>
+        <p id="paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <button id="myButton" type="button">Changer la mise en forme du paragraphe</button>
+        <br>
+        <br>
+        <button id="supprimerImg" type="button" onclick="removeImage()">Supprimer l'image</button>
+        <button type="button" onclick="changerPolice()">changer ta taille de la police</button>
+        <img id="image" src="https://dummyimage.com/600x400/000/fff" alt="">
+
+        <button id="button" type="button" onclick="afficherPersonne()">Afficher la personne</button>
+        <div id="personne"></div>
+        <button id="button2" type="button" onclick="afficherPersonne2()">Afficher la personne2</button>
+        <div id="personne2"></div>
+    </div>
+    <script>
+        const paragraph = document.getElementById("paragraph");
+        
+      
+        function removeImage(){
+            const image = document.getElementById("image");
+            image.remove();
+        }
+        const button = document.getElementById("myButton");
+        button.addEventListener('click', function() {
+              paragraph.style.fontSize = "20px";
+        paragraph.style.color = "blue";
+        paragraph.style.backgroundColor = "lightgray";
+        });
+
+        document.addEventListener('DOMContentLoaded',function(event){
+            const titleElem = document.getElementById("title");
+            titleElem.style.color = "red";
+        });
+
+        //function flechée pour dimoinieur la taille de la police
+        const changerPolice = (taillePolice) => {
+            const nouvelleTaille = prompt("Entrez la taille de la police (en px) :", taillePolice);
+            const paragraph = document.getElementById("paragraph");
+            
+            paragraph.style.fontSize = nouvelleTaille + "px";
+        }
+
+        const personne={
+            nom:"John",
+            age:20,
+            ville:"Paris"
+        }
+        const personne2={
+            nom:"Jane",
+            age:21,
+            ville:"Lyon"
+        }
+
+        let {nom,age,ville}=personne;
+        let {nom: nom2, age: age2, ville: ville2} = personne2;
+//fonction flechée pour afficher la personne dans un div 
+        const afficherPersonne = () => {
+            const div = document.getElementById("personne");
+            div.innerHTML = `Nom: ${nom}, Age: ${age}, Ville: ${ville}`;
+        }
+        const afficherPersonne2 = () => {
+            const div = document.getElementById("personne2");
+            div.innerHTML = `Nom: ${nom2}, Age: ${age2}, Ville: ${ville2}`;
+        };
+
+        fetch("https://jsonplaceholder.typicode.com/posts")
+        .then(response => response.json())
+        //call successful
+        .then(data => console.log(data))
+        //call failed
+        .catch(error => console.error(error));
+        
+    </script>
+</body>
+</html>
