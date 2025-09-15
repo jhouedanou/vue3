@@ -1,6 +1,7 @@
 <script setup>
-  import PortfolioMain from './pages/PortfolioMain.vue';
-  import PageHeader from './components/PageHeader.vue';
+import { RouterLink, RouterView } from 'vue-router';
+import PortfolioMain from '../pages/PortfolioMain.vue';
+import PageHeader from './components/PageHeader.vue';
 </script>
 
 <template>
@@ -9,7 +10,7 @@
   </header>
 
   <main>
-    <PortfolioMain />
+    <RouterView />
   </main>
 </template>
 
