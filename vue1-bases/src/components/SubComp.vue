@@ -10,7 +10,7 @@ const props = defineProps({
 const emit = defineEmits(['compMsg']);
 const clickHandler = () => {
     console.log('clicked '+props.msg)
-    emit('compMsg')
+    emit('compMsg',props.msg)
 };
 
 </script>
